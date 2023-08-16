@@ -1,4 +1,4 @@
-(define-module (zero packages zerolib))
+(define-module (zero packages guile-zerolib))
 (use-modules
   (guix packages)
   (gnu packages guile)
