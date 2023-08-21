@@ -7,7 +7,8 @@
   (let* ((name-s (cadr args))
          (name (string->symbol name-s))
          (url (string-append "https://github.com/" name-s "/" name-s)))
-    (pretty-print
+    (for-each
+      pretty-print
       `((define-module (zero packages ,name))
         (use-modules
           (guix packages)
