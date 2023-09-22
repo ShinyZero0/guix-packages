@@ -21,10 +21,12 @@
    (arguments
      (list
        #:tests? #f
-       #:make-flags '(list "CC=gcc" "PREFIX=" (string-append "DESTDIR=" (assoc-ref %outputs "out")))
+       #:make-flags '(list "CC=gcc"
+                           "PREFIX="
+                           (string-append "DESTDIR="
+                                          (assoc-ref %outputs "out")))
        #:phases '(modify-phases %standard-phases
-                                (delete 'configure))
-       ))
+                                (delete 'configure))))
    (build-system gnu-build-system)
    (inputs
      (list
