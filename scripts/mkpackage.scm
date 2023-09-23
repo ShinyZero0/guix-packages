@@ -1,7 +1,6 @@
 #!/usr/bin/env -S guile -e main
 !#
 (use-modules
-  (zerolib)
   (ice-9 pretty-print))
 (define (main args)
   (let* ((name-s (cadr args))
