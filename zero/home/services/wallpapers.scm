@@ -36,8 +36,8 @@
       (list (service-extension home-mcron-service-type
                                home-wallpapers-mcron-jobs)
             (service-extension home-profile-service-type
-                               (lambda (config)
-                                 (list
-                                   (home-wallpapers-configuration-package config))))))
+                               (compose
+                                 list
+                                 home-wallpapers-configuration-package))))
     (description
-      "Install and configure @command{nitrogen} as a Shepherd service.")))
+      "Install and configure @command{nitrogen} for wallpaper switching as a Shepherd service.")))
