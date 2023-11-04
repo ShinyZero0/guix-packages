@@ -10,7 +10,7 @@
 (define-public zsh-marks
   (package
     (name "zsh-marks")
-    (version "49fa798fb22a69ba081e7018e0ffc51e03b66716")
+    (version "34dc5585c74c559e487436e535744f7c8147312b")
     (source
       (origin
         (method git-fetch)
@@ -19,7 +19,7 @@
                (commit version)))
         (sha256
           (base32
-            "0gw0y1g945nx4b7ky603kpw7jfqfy1zscg3dbj7d8rjbvg26rb03"))))
+            "1w2mgyszmvkldprmh90bn0gqrx0fzpk9gk1k15bha8hdqqqdv731"))))
     (build-system copy-build-system)
     (arguments (list
                  #:install-plan
