@@ -1,7 +1,7 @@
 (define-module (zero home services wallpapers)
                #:export (home-wallpapers-configuration))
 (use-modules
-  (gnu packages wm)
+  (gnu packages image-viewers)
   (guix packages)
   (gnu services configuration)
   (gnu home services mcron)
@@ -9,7 +9,7 @@
   (guix gexp))
 (define-configuration/no-serialization
   home-wallpapers-configuration
-  (package (package nitrogen) "Nitrogen package to use")
+  (package (package feh) "Feh package to use")
   (random? (boolean #f) "Whether to shuffle wallpapers")
   (display (integer 0) "x11 display")
   (dir (file-like (configuration-missing-field 'home-wallpapers-configuration 'dir)) "Directory to search wallpapers in"))
@@ -23,10 +23,10 @@
                     (number->string
                       #$(home-wallpapers-configuration-display config))))
                 (apply system*
-                  `(,#$(file-append nitrogen "/bin/nitrogen")
-                     "--set-zoom-fill"
+                  `(,#$(file-append feh "/bin/feh")
+                     "--bg-fill"
                      ,#$@(if (home-wallpapers-configuration-random? config)
-                           '("--random") '())
+                           '("--randomize") '())
                      ,#$(home-wallpapers-configuration-dir config))
                   )))))
 (define-public home-wallpapers-service-type
