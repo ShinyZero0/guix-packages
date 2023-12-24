@@ -1,6 +1,7 @@
 (define-module (zero home services multimedia))
 (use-modules
   (gnu packages music)
+  (gnu packages suckless)
   (guix packages)
   (guix git-download)
   (gnu home services shepherd)
@@ -46,22 +47,27 @@
                                         home-mpv-plugins-files)))
                  (description "Installs list of file-likes as mpv plugins")))
 (define (home-mpv-dmenu-plugin-files _)
-  `(("mdmenu.lua" ,(file-append
-                     (origin
-                       (method git-fetch)
-                       (uri (git-reference
-                              (url "https://codeberg.org/NRK/mpv-toolbox")
-                              (commit "b1b7fa4b64811e6f387fcb54fc7c51b8c280336e")))
-                       (sha256
-                         (base32
-                           "15k8vph55js6xswc5wyns8sps159mbidbkqhbbx6s7dslr03yxrn")))
-                     "/mdmenu/mdmenu.lua"))))
+  `(("mdmenu.lua"
+     ,(file-append
+       (if (getenv "TESTING")
+           (local-file "/home/zero/dev/mpv-toolbox" #:recursive? #t)
+           (origin
+            (method git-fetch)
+            (uri (git-reference
+              (url "https://codeberg.org/shinyzero0/mpv-toolbox")
+              (commit "28596f308eacee3a06cb8e80e34b26666bbf93c7")))
+            (sha256
+             (base32
+              "0754znxqa6x16asfi9qgdvlgmvhh9wcm2am2kcfh4fnszwpwc32h"))))
+       "/mdmenu/mdmenu.lua"))))
 (define-public home-mpv-dmenu-plugin-service-type
   (service-type
     (name 'mpv-dmenu-plugin)
-    (default-value #f)
+    (default-value dmenu)
     (extensions
       (list
         (service-extension home-mpv-plugins-service-type
-                           home-mpv-dmenu-plugin-files)))
+                           home-mpv-dmenu-plugin-files)
+        (service-extension home-profile-service-type
+                           list)))
     (description "Installs dmenu mpv plugin")))
