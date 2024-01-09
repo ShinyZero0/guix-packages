@@ -44,14 +44,14 @@
         (base32 "0a7f9x247dbsn5r0zfl6jm2x34si35wagn0dgilffdz0i6sns65p"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/fiatjaf/jiq"))
+     '(#:import-path "github.com/fiatjaf/jiq/cmd/jiq"
+       #:unpack-path "github.com/fiatjaf/jiq"))
     (propagated-inputs `(("go-github-com-stretchr-testify" ,go-github-com-stretchr-testify)
                          ("go-github-com-nsf-termbox-go" ,go-github-com-nsf-termbox-go)
                          ("jq" ,jq)
                          ("go-github-com-mattn-go-runewidth" ,go-github-com-mattn-go-runewidth)))
     (home-page "https://github.com/fiatjaf/jiq")
     (synopsis "jiq")
-    (description "It's @@url{https://github.com/simeji/jid,jid} with
-@@url{https://stedolan.github.io/jq/,jq}.")
+    (description "It's @url{https://github.com/simeji/jid,jid} with @url{https://stedolan.github.io/jq/,jq}.")
     (license license:expat)))
 go-github-com-fiatjaf-jiq
