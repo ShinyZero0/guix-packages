@@ -198,3 +198,218 @@
     (synopsis "Initiate a persistent database connection")
     (description "")
     (license #f)))
+(define-public perl-dbd-anydata
+  (package
+    (name "perl-dbd-anydata")
+    (version "0.110")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (string-append "mirror://cpan/authors/id/R/RE/REHSACK/DBD-AnyData-"
+                            version ".tar.gz"))
+        (sha256
+          (base32 "1axfvh52h7715szykggr3v62zml9g59gvwvvdhzzsxjhwn40szr4"))))
+    (build-system perl-build-system)
+    (native-inputs (list perl-module-build))
+    (propagated-inputs (list perl-anydata perl-dbi perl-params-util
+                             perl-sql-statement))
+    (home-page "https://metacpan.org/release/DBD-AnyData")
+    (synopsis "DBI access to XML, CSV and other formats")
+    (description "")
+    (license license:perl-license)))
+(define-public perl-anydata
+  (package
+    (name "perl-anydata")
+    (version "0.12")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (string-append "mirror://cpan/authors/id/R/RE/REHSACK/AnyData-"
+                            version ".tar.gz"))
+        (sha256
+          (base32 "1z5wmmzmcx9ylqhv55djbm2izfnfvqrb2djm62dvmzm20izrasmy"))))
+    (build-system perl-build-system)
+    (native-inputs (list perl-test-output))
+    (propagated-inputs (list perl-cgi))
+    (home-page "https://metacpan.org/release/AnyData")
+    (synopsis "(DEPRECATED) easy access to data in many formats")
+    (description "")
+    (license license:perl-license)))
+(define-public perl-sql-statement
+  (package
+    (name "perl-sql-statement")
+    (version "1.414")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (string-append
+                "mirror://cpan/authors/id/R/RE/REHSACK/SQL-Statement-" version
+                ".tar.gz"))
+        (sha256
+           (base32 "0j8sg36wc3nwfb2gj3fv75f0iv7s7q7vl6b5l3fywdm1lv7vvs6x"))))
+    (build-system perl-build-system)
+    (native-inputs (list perl-dbd-anydata
+                         perl-dbd-csv
+                         perl-dbi
+                         perl-math-base-convert
+                         perl-sql-statement
+                         perl-test-deep
+                         perl-text-soundex))
+    (propagated-inputs (list perl-clone
+                             perl-dbd-anydata
+                             perl-dbd-csv
+                             perl-dbi
+                             perl-math-base-convert
+                             perl-module-runtime
+                             perl-params-util
+                             perl-sql-statement
+                             perl-text-soundex))
+    (home-page "https://metacpan.org/release/SQL-Statement")
+    (synopsis "SQL parsing and processing engine")
+    (description "")
+    (license license:perl-license)))
+(define-public perl-dbd-csv
+  (package
+    (name "perl-dbd-csv")
+    (version "0.60")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (string-append "mirror://cpan/authors/id/H/HM/HMBRAND/DBD-CSV-"
+                            version ".tgz"))
+        (sha256
+          (base32 "1rxlai91j648hi3fghxxc3giq068n7448c1wijy7k6br1yiq72q1"))))
+    (build-system perl-build-system)
+    (native-inputs (list perl-dbi))
+    (propagated-inputs (list perl-dbi perl-sql-statement perl-text-csv_xs))
+    (home-page "https://metacpan.org/release/DBD-CSV")
+    (synopsis "DBI driver for CSV files")
+    (description "")
+    (license license:perl-license)))
+(define-public perl-crypt-bcrypt
+  (package
+    (name "perl-crypt-bcrypt")
+    (version "0.011")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (string-append "mirror://cpan/authors/id/L/LE/LEONT/Crypt-Bcrypt-"
+                            version ".tar.gz"))
+        (sha256
+           (base32 "1853prmscba2yd63xxmbhzjikhq1mlmv7ijvv7i39rr60n5sdz37"))))
+    (build-system perl-build-system)
+    (home-page "https://metacpan.org/release/Crypt-Bcrypt")
+    (synopsis "A modern bcrypt implementation")
+    (description "")
+    (license license:perl-license)))
+(define-public perl-raisin
+  (package
+    (name "perl-raisin")
+    (version "0.94")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (string-append "mirror://cpan/authors/id/R/RT/RTKH/Raisin-" version
+                            ".tar.gz"))
+        (sha256
+          (base32 "0bzrqs4glqlcfpb52ckbns67xggh52h57r6yi6s288x7khf1pm3b"))))
+    (build-system perl-build-system)
+    (native-inputs (list perl-module-build perl-test-exception perl-test-pod))
+    (propagated-inputs (list perl-hash-merge
+                             perl-http-message
+                             perl-json-maybexs
+                             perl-plack
+                             perl-plack-middleware-crossorigin
+                             perl-type-tiny
+                             perl-yaml))
+    (arguments
+      (list
+        #:tests? #f))
+    (home-page "https://metacpan.org/release/Raisin")
+    (synopsis "A REST API microframework for Perl.")
+    (description "")
+    (license license:perl-license)))
+(define-public perl-plack-middleware-crossorigin
+  (package
+   (name "perl-plack-middleware-crossorigin")
+   (version "0.014")
+   (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+              "mirror://cpan/authors/id/H/HA/HAARG/Plack-Middleware-CrossOrigin-"
+              version ".tar.gz"))
+       (sha256
+         (base32 "1dzk0hqckarjk7kmqybsmfx99bn4x7yj027f3ayacmc4rjmhzs1m"))))
+   (build-system perl-build-system)
+   (native-inputs (list perl-plack))
+   (propagated-inputs (list perl-plack))
+   (home-page "https://metacpan.org/release/Plack-Middleware-CrossOrigin")
+   (synopsis "Adds headers to allow Cross-Origin Resource Sharing")
+   (description "")
+   (license license:perl-license)))
+(define-public perl-sereal-encoder
+  (package
+    (name "perl-sereal-encoder")
+    (version "5.004")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "mirror://cpan/authors/id/Y/YV/YVES/Sereal-Encoder-" version
+             ".tar.gz"))
+       (sha256
+        (base32 "06ybap5b4zmbjfkv1sg0blmpaacfqvjwnblkh3nk9bidsg68cnjy"))))
+    (build-system perl-build-system)
+    (native-inputs (list perl-devel-checklib
+                         perl-sereal-decoder
+                         perl-test-deep
+                         perl-test-differences
+                         perl-test-longstring
+                         perl-test-warn))
+    (propagated-inputs (list perl-sereal-decoder))
+    (home-page "https://metacpan.org/release/Sereal-Encoder")
+    (synopsis "Fast, compact, powerful binary serialization")
+    (description "")
+    (license license:perl-license)))
+
+(define-public perl-sereal-decoder
+  (package
+    (name "perl-sereal-decoder")
+    (version "5.004")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "mirror://cpan/authors/id/Y/YV/YVES/Sereal-Decoder-" version
+             ".tar.gz"))
+       (sha256
+        (base32 "11377sfy71774mg2yhsl2zmwvjmj7vsgqrhgpdh6w6kxv0a07vv8"))))
+    (build-system perl-build-system)
+    (native-inputs (list perl-devel-checklib perl-test-deep
+                         perl-test-differences perl-test-longstring
+                         perl-test-warn))
+    (home-page "https://metacpan.org/release/Sereal-Decoder")
+    (synopsis "Fast, compact, powerful binary deserialization")
+    (description "")
+    (license license:perl-license)))
+
+(define-public perl-mce
+  (package
+    (name "perl-mce")
+    (version "1.889")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append "mirror://cpan/authors/id/M/MA/MARIOROY/MCE-"
+                           version ".tar.gz"))
+       (sha256
+        (base32 "1vdv16wfwvzmklmirlkprba4rn02832m7gsh60jzqinhfkj56qfv"))))
+    (build-system perl-build-system)
+    (propagated-inputs (list perl-sereal-decoder perl-sereal-encoder))
+    (home-page "https://metacpan.org/release/MCE")
+    (synopsis
+     "Many-Core Engine for Perl providing parallel processing capabilities")
+    (description "")
+    (license license:perl-license)))
+
